@@ -5,49 +5,32 @@
   height: 75px;
   margin: 0;
 }
-
 .main-background {
   background: url("./assets/images/bg-noblur.png") center/cover no-repeat;
   width: 100%;
   height: 100svh;
 }
-
 @font-face {
     font-family: 'Bebas';
     src: url(./assets/fonts/BebasNeueRegular.otf);
     font-style: normal;
 }
-
-.bebasNeue {
-    font-family: 'Bebas', sans-serif !important;
+:root {
+  --bebas-font: 'Bebas', sans-serif;
+  --footer-color: rgba(39, 36, 72, 0.8);
+  --header-color: rgba(39, 36, 72, 0.8);
 }
-
-.custom-color {
-  background-color: rgba(39, 36, 72, 0.8) !important;
-}
-
 html {
   position: relative;
   min-height: 100vh;
 }
-
 body {
   margin: 0;
 }
-
 footer {
-  background: #f3f3f3;
   margin-top: 0rem;
   padding: 1rem 0;
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-  footer .attribution {
-    vertical-align: middle;
-    margin-left: 10px;
-    font-size: 0.8rem;
-    color: #bbb;
-    font-weight: 300;
 }
