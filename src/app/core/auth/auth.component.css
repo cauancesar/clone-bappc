@@ -1,0 +1,13 @@
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  overflow: auto;
+}
+.auth-container {
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}

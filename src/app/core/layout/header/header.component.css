@@ -2,12 +2,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   background-color: var(--header-color);
-  height: 80px;
+  min-height: 80px;
   padding: 0px 30px;
 }
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 }
 .buttons button {
