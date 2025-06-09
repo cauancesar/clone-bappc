@@ -1,0 +1,68 @@
+/* Estilos base do botão */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: var(--proxima-nova-bold-font);
+  line-height: 1.5;
+}
+.btn:hover:not(.btn-disabled) {
+  opacity: 0.9;
+}
+.label {
+  font-size: 1rem;
+}
+.btn-small {
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.btn-medium {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+.btn-large {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+.btn-outline {
+  background-color: transparent;
+}
+.btn-full-width {
+  width: 100%;
+}
+.btn-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.btn-loading {
+  pointer-events: none;
+}
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.ml-2 {
+  margin-left: 8px;
+}

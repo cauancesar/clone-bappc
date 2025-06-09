@@ -8,6 +8,90 @@
 .auth-container {
   display: flex;
   align-items: center;
-  max-width: 500px;
-  margin: 0 auto;
+  flex-direction: column;
+  width: 100%;
+  max-width: 550px;
+  margin: 40px auto 40px;
+  padding: 50px 20px 50px 20px;
+  background: var(--modal-color);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 0 35px var(--modal-shadow-color);
+}
+.subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.subtitle p {
+  display: flex;
+  gap: 5px;
+}
+.subtitle p p {
+  opacity: 0.7;
+}
+.subtitle p a{
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.subtitle p a:hover {
+  color: var(--link-color);
+}
+form {
+  width: 100%;
+  padding: 20px 35px 20px 35px;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.title .type {
+  font-size: 1.6rem;
+  font-family: var(--proxima-nova-font);
+}
+.title .tournament {
+  font-size: 2.5rem;
+  font-family: var(--proxima-nova-font);
+  font-weight: bold;
+}
+.options {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 35px 0;
+}
+.remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.remember-me input {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #6c757d;
+  border-radius: 2px;
+  appearance: none;
+  transition: all 0.2s ease;
+}
+.remember-me input:checked {
+  background-color: var(--link-color);
+  border-color: var(--link-color);
+}
+.remember-me input:hover {
+  border-color: var(--link-color);
+}
+.options a {
+  opacity: 0.7;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.options a:hover {
+  opacity: 1;
 }

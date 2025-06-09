@@ -13,14 +13,29 @@
   max-height: 100dvh;
 }
 @font-face {
-    font-family: 'Bebas';
-    src: url(./assets/fonts/BebasNeueRegular.otf);
+  font-family: "Bebas";
+  src: url(./assets/fonts/BebasNeueRegular.otf);
+  font-style: normal;
+}
+@font-face {
+  font-family: "ProximaNovaBold";
+  src: url(./assets/fonts/proxima-nova-bold.otf);
+  font-style: normal;
+}
+@font-face {
+    font-family: 'ProximaNova';
+    src: url(./assets/fonts/Proxima-Nova-Font.otf);
     font-style: normal;
 }
 :root {
-  --bebas-font: 'Bebas', sans-serif;
+  --bebas-font: "Bebas", sans-serif;
+  --proxima-nova-bold-font: "ProximaNovaBold", sans-serif;
+  --proxima-nova-font: "ProximaNova", sans-serif;
   --footer-color: rgba(39, 36, 72, 0.8);
   --header-color: rgba(39, 36, 72, 0.8);
+  --modal-color: rgba(19, 20, 24, 0.5);
+  --link-color: rgba(105, 24, 255, 1);
+  --modal-shadow-color: rgba(80, 70, 152, 0.40);
 }
 html {
   height: 100%;
@@ -51,8 +66,8 @@ app-layout-footer {
   z-index: 100;
 }
 router-outlet + * {
+  display: flex;
   flex: 1 0 auto;
   overflow-y: auto;
-  display: flex;
   flex-direction: column;
 }

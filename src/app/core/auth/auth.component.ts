@@ -4,6 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ListErrorsComponent } from "../../shared/components/list-errors/list-errors.component";
 import { CommonModule } from '@angular/common';
+import { InputsComponent } from '../../shared/components/inputs/inputs.component';
+import { CustomSelectComponent, SelectOption } from '../../shared/components/select-inputs/select-inputs.component';
+import { ButtonsComponent } from '../../shared/components/buttons/buttons.component';
 
 enum AuthType {
   LOGIN = 'login',
@@ -20,7 +23,7 @@ export interface AuthForm {
 
 @Component({
   selector: 'app-auth',
-  imports: [RouterLink, ReactiveFormsModule, ListErrorsComponent, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, ListErrorsComponent, CommonModule, InputsComponent, CustomSelectComponent, ButtonsComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
@@ -30,6 +33,12 @@ export class AuthComponent implements OnInit {
   errors: Errors = { errors: {}}
   isSubmitting = false
   authForm: FormGroup<AuthForm>
+  servers: SelectOption[] = [
+    { value: 'Global', label: 'Global' },
+    { value: 'Japão', label: 'Japão' },
+    { value: 'Ásia', label: 'Ásia' },
+    { value: 'Coreia', label: 'Coreia' }
+  ]
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -48,7 +57,6 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initialization logic can go here
     this.authType = this.route.snapshot.url.at(-1)!.path as AuthType
     this.title = this.authType === AuthType.LOGIN ? 'Entrar' : 'Cadastrar-se'
     if (this.authType === AuthType.REGISTER) {
@@ -74,8 +82,9 @@ export class AuthComponent implements OnInit {
         }),
       )
     }
-
-
   }
 
+  submitForm(): void {
+    console.log('Form submitted:', this.authForm.value);
+  }
 }

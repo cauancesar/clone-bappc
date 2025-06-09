@@ -1,0 +1,54 @@
+<div class="select-container">
+  <label *ngIf="label" class="select-label" [for]="selectId">{{ label }}</label>
+
+  <div class="select-wrapper" [ngClass]="{ 'select-open': isOpen }">
+    <div
+      class="custom-select"
+      [ngClass]="{
+        error: hasError,
+        disabled: disabled,
+        placeholder: !selectedOption,
+      }"
+      (click)="toggleDropdown()"
+      [tabindex]="disabled ? -1 : 0"
+      (keydown)="onKeyDown($event)"
+    >
+      <span class="select-text">
+        {{ selectedOption ? selectedOption.label : placeholder }}
+      </span>
+
+      <span class="select-arrow" [ngClass]="{ rotate: isOpen }"> ▼ </span>
+    </div>
+
+    <!-- Ícone personalizado -->
+    <span *ngIf="icon" class="select-icon">
+      {{ icon }}
+    </span>
+
+    <!-- Dropdown -->
+    <div class="select-dropdown" [ngClass]="{ show: isOpen }" *ngIf="isOpen">
+      <div
+        *ngFor="let option of options; trackBy: trackByValue"
+        class="select-option"
+        [ngClass]="{
+          selected: option.value === value,
+          disabled: option.disabled,
+          highlighted: highlightedIndex === getOptionIndex(option),
+        }"
+        (click)="selectOption(option)"
+        (mouseenter)="highlightedIndex = getOptionIndex(option)"
+      >
+        {{ option.label }}
+      </div>
+
+      <div *ngIf="options.length === 0" class="select-option disabled">
+        Nenhuma opção disponível
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensagem de erro -->
+  <span *ngIf="errorMessage && hasError" class="error-message">
+    {{ errorMessage }}
+  </span>
+</div>

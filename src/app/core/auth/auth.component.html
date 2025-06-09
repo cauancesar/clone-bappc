@@ -1,76 +1,108 @@
 <section class="auth-page">
   <div class="auth-container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3 col-xs-12">
-        <h1 class="text-xs-center">{{ title }}</h1>
-        <p class="text-xs-center">
-          @if (authType === "register") {
-            <a [routerLink]="['/login']">Have an account?</a>
-          }
+    <div class="title">
+      <p class="type">
+        {{ authType === "register" ? "Cadastrar-se no" : "Entrar no" }}
+      </p>
+      <p class="tournament">Bebam Água Cup</p>
+    </div>
 
-          @if (authType === "login") {
-            <a [routerLink]="['/register']">Need an account?</a>
-          }
-        </p>
-        <app-list-errors [errors]="errors" />
-        <form [formGroup]="authForm" (ngSubmit)="('submitForm()')">
-          <fieldset [disabled]="isSubmitting">
-            <fieldset class="form-group">
-              <input
-                formControlName="email"
-                placeholder="Email"
-                class="form-control form-control-lg"
-                type="text"
-              />
-            </fieldset>
-            <fieldset class="form-group">
-              <input
-                formControlName="password"
-                placeholder="Password"
-                class="form-control form-control-lg"
-                type="password"
-              />
-            </fieldset>
-            <fieldset class="form-group">
-              @if (authType === "register") {
-                <input
-                  formControlName="username"
-                  placeholder="Username"
-                  class="form-control form-control-lg"
-                  type="text"
-                />
-              }
-            </fieldset>
-            <fieldset class="form-group">
-              @if (authType === "register") {
-                <input
-                  formControlName="username"
-                  placeholder="Username"
-                  class="form-control form-control-lg"
-                  type="text"
-                />
-              }
-            </fieldset>
-            <fieldset class="form-group">
-              @if (authType === "register") {
-                <input
-                  formControlName="username"
-                  placeholder="Username"
-                  class="form-control form-control-lg"
-                  type="text"
-                />
-              }
-            </fieldset>
-            <button
-              class="btn btn-lg btn-primary pull-xs-right"
-              [disabled]="!authForm.valid"
-              type="submit"
-            >
-              {{ title }}
-            </button>
+    <app-list-errors [errors]="errors" />
+
+    <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+      <fieldset [disabled]="isSubmitting">
+        <fieldset class="form-group">
+          <app-inputs
+            type="email"
+            label="E-mail"
+            placeholder="Digite seu e-mail"
+            formControlName="email"
+            [hasError]="
+              !!(
+                authForm.get('email')?.invalid && authForm.get('email')?.touched
+              )
+            "
+            errorMessage="E-mail é obrigatório"
+          >
+          </app-inputs>
+        </fieldset>
+        <fieldset class="form-group">
+          <app-inputs
+            type="password"
+            label="Senha"
+            formControlName="senha"
+            [hasError]="
+              !!(
+                authForm.get('senha')?.invalid && authForm.get('senha')?.touched
+              )
+            "
+            errorMessage="Senha precisa ter no mínimo 6 caracteres"
+          />
+        </fieldset>
+        <ng-container *ngIf="authType === 'register'">
+          <fieldset class="form-group">
+            <app-inputs
+              type="cpf"
+              label="CPF"
+              placeholder="Digite seu CPF"
+              formControlName="cpf"
+              errorMessage="CPF inválido"
+            />
           </fieldset>
-        </form>
-      </div>
+          <fieldset class="form-group">
+            <app-custom-select
+              label="Servidor"
+              [options]="servers"
+              formControlName="servidor"
+              [hasError]="!!authForm.get('servidor')?.invalid"
+              errorMessage="Campo obrigatório"
+            />
+          </fieldset>
+          <fieldset class="form-group">
+            <app-inputs
+              type="text"
+              label="Nome de usuário"
+              placeholder="Digite seu nome de usuário"
+              formControlName="user"
+              [hasError]="
+                !!(
+                  authForm.get('user')?.invalid && authForm.get('user')?.touched
+                )
+              "
+              errorMessage="Campo obrigatório"
+            />
+          </fieldset>
+        </ng-container>
+
+        <ng-container *ngIf="authType === 'login'">
+          <div class="options">
+            <div class="remember-me">
+              <input type="checkbox" id="rememberMe" />
+              <label for="rememberMe">Lembrar de mim</label>
+            </div>
+            <a href="#">Esqueceu sua senha?</a>
+          </div>
+        </ng-container>
+
+        <app-buttons
+          type="confirm"
+          [disabled]="!authForm.valid"
+          [fullWidth]="true"
+          [loading]="isSubmitting"
+          [label]="authType === 'register' ? 'Cadastrar-se' : 'Entrar'"
+          htmlType="submit"
+        />
+      </fieldset>
+    </form>
+
+    <div class="subtitle">
+      <p *ngIf="authType === 'register'">
+        Já possui uma conta? <a [routerLink]="['/login']">Entrar</a>
+      </p>
+      <p *ngIf="authType === 'login'">
+        Ainda não tem uma conta?
+        <a [routerLink]="['/register']">Cadastrar-se</a>
+      </p>
     </div>
   </div>
 </section>

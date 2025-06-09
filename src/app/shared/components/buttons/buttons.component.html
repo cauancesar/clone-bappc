@@ -1,0 +1,18 @@
+<button
+  [class]="buttonClasses"
+  [ngStyle]="customStyles"
+  [disabled]="disabled || loading"
+  (click)="onClick($event)"
+  [type]="htmlType"
+  >
+
+  <i *ngIf="icon && iconPosition === 'left'" [class]="icon"></i>
+
+  <span *ngIf="loading" class="spinner"></span>
+
+  <span *ngIf="label" class="label" [class]="{'ml-2': (icon && iconPosition === 'left') || loading}">
+    {{ label }}
+  </span>
+
+  <i *ngIf="icon && iconPosition === 'right'" [class]="icon + ' ml-2'"></i>
+</button>

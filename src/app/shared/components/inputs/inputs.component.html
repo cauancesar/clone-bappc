@@ -1,0 +1,42 @@
+<div class="input-container">
+  <label *ngIf="label" class="input-label" [for]="inputId">{{ label }}</label>
+
+  <div
+    class="input-wrapper"
+    [ngClass]="{ 'password-container': type === 'password' }"
+  >
+    <input
+      [id]="inputId"
+      [type]="getInputType()"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [value]="value"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+      (focus)="onFocus()"
+      class="custom-input"
+      [ngClass]="{
+        'password-input': type === 'password',
+        error: hasError,
+        disabled: disabled,
+      }"
+    />
+
+    <span
+      *ngIf="type === 'password'"
+      class="eye-icon"
+      (click)="togglePassword()"
+    >
+      <i class="mdi" [ngClass]="getEyeIcon()"></i>
+    </span>
+
+    <span *ngIf="icon && type !== 'password'" class="input-icon">
+      {{ icon }}
+    </span>
+  </div>
+
+  <span *ngIf="errorMessage && hasError" class="error-message">
+    {{ errorMessage }}
+  </span>
+</div>
